@@ -40,26 +40,39 @@ public class DocenteService implements IDocenteService{
     }
 
     @Override
-    public void editDocente(Long idOriginal, 
-                            Long id_nuevoDocente, 
-                            String nuevoApellidos, 
-                            String nuevoNombres, 
-                            String nuevaProfesion, 
-                            String nuevaFechaNacimiento, 
+    public void editDocente(Long idOriginal,
+                            String nuevoApellidos,
+                            String nuevoNombres,
+                            String nuevaProfesion,
+                            String nuevaFechaNacimiento,
                             String nuevoCorreo) {
-        
+
         Docente doce = this.findDocente(idOriginal);
-        
-        doce.setId_docente(id_nuevoDocente);
-        doce.setApellidos(nuevoApellidos);
-        doce.setNombres(nuevoNombres);
-        doce.setProfesion(nuevaProfesion);
-        doce.setFechaNacimiento(nuevaFechaNacimiento);
-        doce.setCorreo(nuevoCorreo);
-        
+        if (doce == null) {
+            throw new RuntimeException("Docente con ID " + idOriginal + " no encontrado");
+        }
+
+        if (nuevoApellidos != null) doce.setApellidos(nuevoApellidos);
+        if (nuevoNombres != null) doce.setNombres(nuevoNombres);
+        if (nuevaProfesion != null) doce.setProfesion(nuevaProfesion);
+        if (nuevaFechaNacimiento != null) doce.setFechaNacimiento(nuevaFechaNacimiento);
+        if (nuevoCorreo != null) doce.setCorreo(nuevoCorreo);
+
         this.saveDocente(doce);
-        
     }
 
-    
+
+    @Override
+    public void editDocente(Docente docente) {
+        // asegurarse de que exista
+        Docente existente = this.findDocente(docente.getId());
+        if (existente != null) {
+            existente.setApellidos(docente.getApellidos());
+            existente.setNombres(docente.getNombres());
+            existente.setProfesion(docente.getProfesion());
+            existente.setFechaNacimiento(docente.getFechaNacimiento());
+            existente.setCorreo(docente.getCorreo());
+            this.saveDocente(existente);
+        }
+    }
 }

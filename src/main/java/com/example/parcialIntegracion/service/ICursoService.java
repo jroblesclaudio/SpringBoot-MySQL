@@ -24,11 +24,10 @@ public interface ICursoService {
     public Curso findCurso(Long id);
     
     //edicion/ modificacion
-    public void editCurso(Long idOriginal, 
-                            Long idNueva, 
+    public void editCurso(Long idOriginal,
                             String nuevoNombreCurso, 
-                            int nuevoCredito, 
-                            int nuevaHorasSemanal,
+                            Integer nuevoCredito,
+                            Integer nuevaHorasSemanal,
                             String nuevoCiclo);
     
     //otra forma de edicion/modificacion

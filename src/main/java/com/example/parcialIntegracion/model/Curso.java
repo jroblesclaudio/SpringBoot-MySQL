@@ -19,8 +19,9 @@ import lombok.Setter;
 public class Curso {
     
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private String nombreCurso;
     private int creditos;
     private int horasSemanal;
@@ -28,7 +29,7 @@ public class Curso {
     
     //relacion uno a uno
     @OneToOne
-    @JoinColumn (name = "un_docente_id_docente", referencedColumnName = "id_docente")
+    @JoinColumn(name = "docente_id", referencedColumnName = "id")
     private Docente unDocente;
 
     public Curso() {

@@ -25,12 +25,12 @@ public interface IDocenteService {
     public Docente findDocente(Long id_docente);
     
     //edicion/ modificacion
-    public void editDocente(Long idOriginal, 
-                            Long id_nuevoDocente, 
+    public void editDocente(Long idOriginal,
+
                             String nuevoApellidos, 
                             String nuevoNombres, 
                             String nuevaProfesion,
                             String nuevaFechaNacimiento,
                             String nuevoCorreo);
-    
+    public void editDocente(Docente docente);
 }

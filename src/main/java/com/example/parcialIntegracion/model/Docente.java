@@ -12,24 +12,26 @@ import lombok.Setter;
  *
  * @author jeand
  */
-@Getter @Setter
+@Getter
+@Setter
 @Entity
 public class Docente {
     
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    private Long id_docente;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
     private String apellidos;
     private String nombres;
     private String profesion;
     private String fechaNacimiento;
-    private String  correo;
+    private String correo;
 
     public Docente() {
     }
 
-    public Docente(Long id_docente, String apellidos, String nombres, String profesion, String fechaNacimiento, String correo) {
-        this.id_docente = id_docente;
+    public Docente(Long id, String apellidos, String nombres, String profesion, String fechaNacimiento, String correo) {
+        this.id = id;
         this.apellidos = apellidos;
         this.nombres = nombres;
         this.profesion = profesion;

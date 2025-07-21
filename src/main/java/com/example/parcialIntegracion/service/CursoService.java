@@ -40,22 +40,22 @@ public class CursoService implements ICursoService{
     }
 
     @Override
-    public void editCurso(Long idOriginal, 
-                          Long idNueva, 
-                          String nuevoNombreCurso, 
-                          int nuevoCredito, 
-                          int nuevaHorasSemanal, 
+    public void editCurso(Long idOriginal,
+                          String nuevoNombreCurso,
+                          Integer nuevoCredito,
+                          Integer nuevaHorasSemanal,
                           String nuevoCiclo) {
-        //busco al objeto original
+
         Curso curs = this.findCurso(idOriginal);
-        
-        curs.setId(idNueva);
-        curs.setNombreCurso(nuevoNombreCurso);
-        curs.setCreditos(nuevoCredito);
-        curs.setHorasSemanal(nuevaHorasSemanal);
-        curs.setCiclo(nuevoCiclo);
-        
-        //guardar los cambios
+        if (curs == null) {
+            throw new RuntimeException("Curso con ID " + idOriginal + " no encontrado");
+        }
+
+        if (nuevoNombreCurso != null) curs.setNombreCurso(nuevoNombreCurso);
+        if (nuevoCredito != null) curs.setCreditos(nuevoCredito);
+        if (nuevaHorasSemanal != null) curs.setHorasSemanal(nuevaHorasSemanal);
+        if (nuevoCiclo != null) curs.setCiclo(nuevoCiclo);
+
         this.saveCurso(curs);
     }
 
